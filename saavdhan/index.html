@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Saavdhan (सावधान) — a free, fully-offline Android app that finds scam and spyware apps on a family member's phone, explains the danger in plain Hindi or English, and guides them to the exact fix screen. Zero internet permissions, enforced by the build." />
+  <title>Saavdhan (सावधान) — Free, Offline Anti-Scam App for Android | Kalpit Tiwari</title>
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:title" content="Saavdhan — find the scam app on your parent's phone, offline" />
+  <meta property="og:description" content="A free, fully-offline Android app for non-technical Indian families: detects scam/spyware apps, explains the risk in plain Hindi or English, and walks you to the fix. Zero internet permissions, enforced by the build." />
+  <meta property="og:image" content="https://kalpit.me/social-preview.png" />
+  <meta property="og:url" content="https://kalpit.me/saavdhan/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://kalpit.me/saavdhan/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+
+  <style>
+    /* Saavdhan page identity (PLAN-13 §B1/§C3) — its own accent + motif,
+       layered on the shared design.css scale (spacing/type/radius). */
+    .saavdhan-page {
+      --sd-bg: #FDF8F0;
+      --sd-card: #FFFFFF;
+      --sd-ink: #2A2318;
+      --sd-soft: #6B6152;
+      --sd-faint: #A39781;
+      --sd-line: #EBE2D2;
+      --sd-danger: #B3261E;
+      --sd-danger-bg: #FBEAE8;
+      --sd-ok: #0E7A4E;
+      --sd-ok-bg: #E4F3EC;
+      /* Rescopes the shared teal accent to Saavdhan's saffron for every
+         shared component (.receipt, .eco-footer, .btn-primary, etc.) */
+      --color-tertiary: var(--color-accent-saavdhan);
+      background: var(--sd-bg);
+      color: var(--sd-ink);
+    }
+    .saavdhan-page a { color: var(--color-accent-saavdhan); }
+    .saavdhan-page .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+    .saavdhan-page .label {
+      display: block;
+      font-family: var(--font-label-caps);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sd-faint);
+      margin-bottom: 14px;
+    }
+
+    /* header */
+    .sd-header { border-bottom: 1px solid var(--sd-line); padding: 18px 0; }
+    .sd-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .sd-header-left { display: flex; align-items: center; gap: 18px; }
+    .back-link { font-size: 0.85rem; font-weight: 600; color: var(--sd-soft) !important; text-decoration: none; white-space: nowrap; }
+    .back-link:hover { color: var(--sd-ink) !important; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 750; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .brand svg { color: var(--color-accent-saavdhan); flex-shrink: 0; }
+    .lang-toggle { display: inline-flex; border: 1px solid var(--sd-line); border-radius: 8px; overflow: hidden; }
+    .lang-btn {
+      font: inherit; font-size: 0.85rem; font-weight: 600; background: var(--sd-card); color: var(--sd-soft);
+      border: 0; padding: 7px 14px; cursor: pointer;
+    }
+    .lang-btn + .lang-btn { border-left: 1px solid var(--sd-line); }
+    .lang-btn.active { background: var(--color-accent-saavdhan); color: #fff; }
+
+    /* hero */
+    .sd-hero { padding: 56px 0 44px; }
+    .sd-hero h1 { font-family: var(--font-h1); font-size: clamp(1.7rem, 3.2vw + 1rem, 2.6rem); font-weight: 700; letter-spacing: -0.02em; max-width: 20ch; margin-bottom: 18px; color: var(--sd-ink); }
+    .sd-hero-sub { color: var(--sd-soft); font-size: 1.05rem; max-width: 56ch; margin-bottom: 26px; }
+    .sd-hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+    .saavdhan-page .btn-saffron {
+      display: inline-flex; align-items: center; gap: 8px; background: var(--color-accent-saavdhan); color: #fff;
+      font-weight: 700; text-decoration: none; padding: 13px 22px; border-radius: 10px; font-size: 0.98rem;
+    }
+    .saavdhan-page .btn-saffron:hover { background: var(--color-accent-saavdhan); }
+    /* the blanket `.saavdhan-page a` link color would otherwise win on
+       specificity and paint solid-fill buttons' text the same as their bg */
+    .saavdhan-page .btn-primary { color: #fff; }
+    .sd-chip {
+      display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 6px; font-family: var(--mono, ui-monospace, "SF Mono", Menlo, monospace);
+      font-size: 0.78rem; line-height: 1.5; border: 1px solid var(--sd-line); border-radius: 4px; padding: 8px 12px;
+      background: var(--sd-card); color: var(--sd-ink); max-width: 100%;
+    }
+    .sd-chip .to { color: var(--color-accent-saavdhan); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* lures */
+    .sd-lures { padding: 40px 0 48px; }
+    .lure-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .lure-card {
+      background: var(--sd-card); border: 1px solid var(--sd-line); border-radius: 12px; padding: 18px 14px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+    }
+    .lure-card svg { color: var(--color-accent-saavdhan); }
+    .lure-card code { font-family: var(--mono, ui-monospace, monospace); font-size: 0.78rem; color: var(--sd-soft); word-break: break-word; }
+    .lure-caption { color: var(--sd-soft); margin-top: 18px; max-width: 62ch; font-size: 0.96rem; }
+
+    /* how it works — real screenshots */
+    .sd-how { padding: 40px 0 48px; }
+    .sd-phones { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
+    .sd-phone { width: 180px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .sd-phone-frame {
+      width: 100%; border: 2px solid var(--sd-ink); border-radius: 20px; overflow: hidden; background: var(--sd-card);
+      aspect-ratio: 1080 / 2400;
+    }
+    .sd-phone-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sd-phone-caption { font-weight: 700; font-size: 0.9rem; color: var(--sd-ink); }
+    .sd-phone-sub { font-size: 0.78rem; color: var(--sd-soft); text-align: center; max-width: 22ch; }
+
+    /* promises */
+    .sd-promises { padding: 40px 0 48px; }
+    .sd-promise-row { padding: 16px 0; border-top: 1px solid var(--sd-line); }
+    .sd-promise-row:last-child { border-bottom: 1px solid var(--sd-line); }
+    .sd-promise-lead { font-weight: 750; font-size: 1.05rem; margin-bottom: 6px; color: var(--sd-ink); }
+    .sd-promise-body { color: var(--sd-soft); font-size: 0.95rem; max-width: 66ch; }
+
+    /* honest limits */
+    .sd-limits { padding: 8px 0 48px; }
+    .sd-limits-block { border: 1px solid var(--sd-line); border-radius: 10px; padding: 20px 22px; color: var(--sd-soft); font-size: 0.92rem; }
+    .sd-limits-block b { color: var(--sd-ink); }
+
+    /* engineers teaser */
+    .sd-engineers { padding: 8px 0 56px; border-top: 1px solid var(--sd-line); margin-top: 8px; padding-top: 32px; }
+    .sd-engineers-text { color: var(--sd-soft); font-size: 0.92rem; max-width: 68ch; margin-bottom: 16px; }
+    .sd-engineers-text a { font-weight: 600; }
+
+    /* case study section below the fold — reuses site bento classes;
+       the saffron accent already cascades from .saavdhan-page */
+    .sd-case-study { padding: 0 0 40px; }
+    .sd-case-study .app-header { border-top: 1px solid var(--sd-line); padding-top: 32px; }
+
+    /* ecosystem footer */
+    .sd-eco-footer { border-top: 1px solid var(--sd-line); padding: 22px 0 60px; }
+    .sd-eco-footer p { font-family: var(--mono, ui-monospace, monospace); font-size: 0.72rem; color: var(--sd-faint); line-height: 1.7; }
+    .sd-eco-footer a { color: var(--sd-faint); text-decoration: underline; text-underline-offset: 2px; }
+
+    @media (max-width: 768px) {
+      .lure-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .sd-hero { padding: 40px 0 32px; }
+      .lure-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .lure-card { padding: 14px 10px; }
+      .sd-hero-actions { gap: 14px; }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/main-nym3zWH5.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-Cm4zaJMw.css">
+</head>
+<body class="saavdhan-page">
+
+  <header class="sd-header">
+    <div class="container">
+      <div class="sd-header-left">
+        <a href="/" class="back-link">← Kalpit Tiwari</a>
+        <div class="brand">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"></path>
+            <path d="M9 12l2 2 4-4"></path>
+          </svg>
+          <span>Saavdhan · सावधान</span>
+        </div>
+      </div>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" class="lang-btn active" id="lang-en" aria-pressed="true">English</button>
+        <button type="button" class="lang-btn" id="lang-hi" aria-pressed="false">हिन्दी</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="sd-hero">
+      <div class="container">
+        <h1>
+          <span class="i18n-en">Is a scam app on your parent's phone?</span>
+          <span class="i18n-hi" hidden>क्या आपके माता-पिता के फ़ोन में scam app है?</span>
+        </h1>
+        <p class="sd-hero-sub">
+          <span class="i18n-en">Saavdhan finds dangerous apps, explains the risk in plain language, and walks you to the exact fix screen — one tap at a time. Fully offline, in Hindi and English, free forever.</span>
+          <span class="i18n-hi" hidden>सावधान ख़तरनाक apps ढूँढता है, ख़तरा आसान भाषा में समझाता है, और सही settings screen तक ले जाता है — पूरी तरह offline, हिन्दी और English में, हमेशा मुफ़्त।</span>
+        </p>
+        <div class="sd-hero-actions">
+          <a class="btn-saffron" href="https://github.com/kalpitt/saavdhan/releases/latest/download/saavdhan.apk">
+            <span class="i18n-en">Download for Android — free</span>
+            <span class="i18n-hi" hidden>Android के लिए डाउनलोड करें — मुफ़्त</span>
+          </a>
+          <a class="link-secondary" href="https://github.com/kalpitt/saavdhan" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+        <div class="sd-chip">
+          <span class="i18n-en"><b>0 internet permissions</b> — the OS makes any network call impossible → <span class="to">enforced by the build</span></span>
+          <span class="i18n-hi" hidden><b>0 internet permissions</b> — network call OS स्तर पर ही असंभव है → <span class="to">build में enforced</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-lures">
+      <div class="container">
+        <span class="label">It arrives on WhatsApp, looking like—</span>
+        <div class="lure-grid">
+          <div class="lure-card">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+              <path d="M3 7l9 6 9-6"></path>
+            </svg>
+            <code>Shaadi-invitation.apk</code>
+          </div>
+          <div class="lure-card">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 8l9-5 9 5-9 5-9-5z"></path>
+              <path d="M3 8v9l9 5 9-5V8"></path>
+              <path d="M12 13v9"></path>
+            </svg>
+            <code>Courier-delivery-update.apk</code>
+          </div>
+          <div class="lure-card">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path>
+              <path d="M14 3v5h5"></path>
+              <path d="M9 13h6M9 17h6"></path>
+            </svg>
+            <code>KYC-verification.apk</code>
+          </div>
+          <div class="lure-card">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"></path>
+            </svg>
+            <code>Electricity-bill.apk</code>
+          </div>
+        </div>
+        <p class="lure-caption">One tap installs a SpyNote-class banking trojan that reads OTPs and drains accounts. The victims are the family members least equipped to diagnose it.</p>
+      </div>
+    </section>
+
+    <section class="sd-how">
+      <div class="container">
+        <span class="label">What Saavdhan does</span>
+        <div class="sd-phones">
+          <div class="sd-phone">
+            <div class="sd-phone-frame">
+              <img src="/saavdhan/screenshots/detect.png" alt="Saavdhan scan results screen, risk-tinted cards with the most dangerous apps shown first" loading="lazy" />
+            </div>
+            <p class="sd-phone-caption">Detect</p>
+            <p class="sd-phone-sub">One-tap scan, scariest apps first</p>
+          </div>
+          <div class="sd-phone">
+            <div class="sd-phone-frame">
+              <img src="/saavdhan/screenshots/explain.png" alt="Saavdhan app detail screen explaining in plain language why an app looks risky" loading="lazy" />
+            </div>
+            <p class="sd-phone-caption">Explain</p>
+            <p class="sd-phone-sub">Plain-language reasons, no black-box score</p>
+          </div>
+          <div class="sd-phone">
+            <div class="sd-phone-frame">
+              <img src="/saavdhan/screenshots/guide.png" alt="Saavdhan guided cleanup checklist walking through removing a dangerous app's powers" loading="lazy" />
+            </div>
+            <p class="sd-phone-caption">Guide</p>
+            <p class="sd-phone-sub">Step-by-step cleanup, one tap at a time</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-promises">
+      <div class="container">
+        <span class="label">The promises that never change</span>
+        <div class="sd-promise-row">
+          <p class="sd-promise-lead">
+            <span class="i18n-en">Fully offline.</span>
+            <span class="i18n-hi" hidden>पूरी तरह offline।</span>
+          </p>
+          <p class="sd-promise-body">No INTERNET permission exists in the app, so the OS itself makes any network call impossible — CI fails the build if one is ever merged in.</p>
+        </div>
+        <div class="sd-promise-row">
+          <p class="sd-promise-lead">
+            <span class="i18n-en">A detective and a guide — never an enforcer.</span>
+            <span class="i18n-hi" hidden>जासूस और guide — enforcer नहीं।</span>
+          </p>
+          <p class="sd-promise-body">Android only lets YOU turn off another app's powers. Saavdhan takes you to the right screen and coaches the final tap. It never fakes an auto-fix.</p>
+        </div>
+        <div class="sd-promise-row">
+          <p class="sd-promise-lead">
+            <span class="i18n-en">Explainable, not magic.</span>
+            <span class="i18n-hi" hidden>समझ आने वाला, जादू नहीं।</span>
+          </p>
+          <p class="sd-promise-body">Every verdict lists its reasons in plain words. No black-box score.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-limits">
+      <div class="container">
+        <div class="sd-limits-block">
+          <p><b>Honest limits:</b> Saavdhan uses behavioural heuristics, not a malware database — false alarms are possible and brand-new threats can be missed. Some switches Android reserves for you alone; Saavdhan says so instead of pretending. If money has already been stolen: call 1930 (India's cyber-crime helpline) and your bank — first, before anything else.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-engineers">
+      <div class="container">
+        <p class="sd-engineers-text">The engineering case study: a pure-Kotlin deterministic risk engine, 131 green tests, CI that fails the build if the INTERNET permission ever appears. <a href="#case-study">Read the case study ↓</a></p>
+        <div class="receipt-row">
+          <span class="receipt"><b>131/131 tests</b> <span class="arrow">&rarr;</span> <a href="https://github.com/kalpitt/saavdhan/actions" target="_blank" rel="noopener">CI</a></span>
+          <span class="receipt"><b>signed v0.6.0</b> <span class="arrow">&rarr;</span> <a href="https://github.com/kalpitt/saavdhan/releases/tag/v0.6.0" target="_blank" rel="noopener">GitHub release</a></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering case study — v0.6.0 refresh of the original content -->
+    <div class="sd-case-study">
+      <div class="app-container case-study-container">
+        <header class="app-header" id="case-study">
+          <span class="label-caps text-secondary">Engineering case study</span>
+          <div class="status-indicator">
+            <span class="dot"></span> v0.6.0 Released
+          </div>
+        </header>
+
+        <main class="case-study-grid">
+
+          <!-- Hero -->
+          <div class="bento-card">
+            <div class="card-content">
+              <div class="meta-tag label-caps" style="display:inline-block; padding:0.25rem 0.75rem; background:rgba(198,115,0,0.1); color:var(--color-accent-saavdhan); border-radius:var(--radius-sm); margin-bottom:1rem;">Case Study · Independent Project</div>
+              <h1 class="h1">Saavdhan — An Offline Bodyguard for the Family Phone</h1>
+              <h2 class="h3 gradient-text mt-2">It detects scam and spyware apps, explains the danger in plain Hindi or English, and walks the user to the exact fix screen — without ever touching the internet.</h2>
+              <p class="body-md text-secondary mt-4 prose-p">
+                Saavdhan (सावधान, "be alert") is a free, open-source Android app built for non-technical Indian family
+                members — the parents and grandparents targeted by WhatsApp-delivered banking trojans disguised as
+                wedding invites, courier updates, and KYC notices. It is a detective and a guide, never an enforcer.
+              </p>
+              <div class="tech-pills mt-4">
+                <span class="tech-pill">v0.6.0 Signed Release</span>
+                <span class="tech-pill">100% Offline</span>
+                <span class="tech-pill">Hindi + English</span>
+                <span class="tech-pill">131 Tests Green</span>
+                <span class="tech-pill">MIT Licensed</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- The problem -->
+          <div class="bento-card">
+            <div class="card-content prose">
+              <h3 class="label-caps mb-4 text-secondary">The Problem — The Scam Arrives on WhatsApp, Not in a Browser</h3>
+              <p class="body-md">
+                India's most damaging phone scams no longer look like phishing emails. A family member receives an APK on
+                WhatsApp — a "wedding invitation," an "electricity bill," a "courier update" — and one tap later a
+                SpyNote-class banking trojan holds Accessibility and Device-Admin powers over the phone. The victims are
+                precisely the people least equipped to diagnose it, and the existing tools fail them twice: security apps
+                assume technical users, and most demand internet access and data collection — the very trust deficit that
+                makes families hesitate to install anything at all.
+              </p>
+              <p class="body-md">
+                Saavdhan's premise: for this audience, <strong>trust is the product</strong>. An anti-scam app earns
+                adoption in a family WhatsApp group only if it can honestly say — and prove — that it collects nothing,
+                sends nothing, and explains every verdict in the user's own language.
+              </p>
+            </div>
+          </div>
+
+          <!-- Design decisions -->
+          <div class="bento-card">
+            <div class="card-content prose">
+              <h3 class="label-caps mb-4 text-secondary">The Design — Three Promises, Engineered as Constraints</h3>
+              <ul class="body-md">
+                <li><strong>It can never touch the internet.</strong> The app declares no INTERNET permission, actively
+                strips any that a dependency tries to merge in, and CI fails the build if the merged manifest ever
+                contains it. The privacy promise is enforced by the build system, not by a policy page.</li>
+                <li><strong>Every verdict is deterministic and explainable.</strong> A point-based risk engine in a pure
+                Kotlin domain layer scores explicit signals — dangerous permission combinations, sideload delivery
+                chains from messenger apps, impersonation of trusted brands (with fuzzy matching), missing trusted
+                signatures. Every verdict carries its ranked reasons, so the UI can explain the danger in plain Hindi or
+                English rather than issue a black-box score.</li>
+                <li><strong>Detective, not enforcer — honest about OS walls.</strong> Android deliberately prevents one
+                app from disabling another app's Accessibility or Device-Admin powers. Saavdhan never fakes an auto-fix:
+                it deep-links the user to the exact settings screen, with OEM-aware fallback chains for Samsung, Xiaomi,
+                Oppo, Vivo, and Huawei skins that degrade one honest step at a time.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- What v0.6.0 ships -->
+          <div class="bento-card">
+            <div class="card-content prose">
+              <h3 class="label-caps mb-4 text-secondary">What v0.6.0 Ships</h3>
+              <ul class="body-md">
+                <li><strong>One-tap scan</strong> of every installed app, with risk levels and plain-language reasons —
+                bilingual throughout, with per-app language switching.</li>
+                <li><strong>A guided cleanup checklist</strong> that walks the user, one honest step at a time, through
+                removing a dangerous app's powers before uninstalling it.</li>
+                <li><strong>A watchdog</strong> that alerts when a newly installed app looks dangerous — the moment that
+                matters in a live scam.</li>
+                <li><strong>Scam delivery-chain detection</strong> that flags apps sideloaded via messengers — the
+                signature of the WhatsApp APK lure.</li>
+                <li><strong>"Send result to family"</strong> — an offline share receipt so a son or daughter in another
+                city can verify a parent's phone was scanned and what it found.</li>
+                <li><strong>A signed, reproducible release</strong> on GitHub. Play Store submission is prepared but not
+                yet filed.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Verification & limits -->
+          <div class="bento-card">
+            <div class="card-content prose">
+              <h3 class="label-caps mb-4 text-secondary">Verified, With Honest Limits</h3>
+              <ul class="body-md">
+                <li><strong>131 unit tests green</strong> across the risk engine and cleanup logic — testable precisely
+                because the "brain" is a pure Kotlin domain layer with no Android imports.</li>
+                <li><strong>CI enforces the promise:</strong> the build fails if the merged manifest gains an INTERNET
+                permission; every user-facing string must exist in both English and Hindi.</li>
+                <li><strong>Detection rules ship in-app</strong> and update only via app updates — a deliberate trade-off
+                that keeps the zero-network promise absolute.</li>
+                <li><strong>Some steps only a human can take.</strong> Android reserves certain switches for the user;
+                Saavdhan says so plainly rather than pretending otherwise. Honesty about the wall is the feature.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Why it matters + CTA -->
+          <div class="bento-card">
+            <div class="card-content prose">
+              <h3 class="label-caps mb-4 text-secondary">Why It Matters</h3>
+              <p class="body-md">
+                Saavdhan is a study in building for trust under constraints: a security product whose guarantees are
+                enforced by the build system, whose judgments are deterministic and explainable in the user's own
+                language, and whose honesty about what it <em>cannot</em> do is treated as a feature. It is the same
+                engineering thesis as my flagship work — bounded, auditable judgment over black-box confidence — applied
+                to protecting the least technical users from the most aggressive threats.
+              </p>
+              <div class="tech-pills mt-4">
+                <span class="tech-pill">Kotlin</span>
+                <span class="tech-pill">Jetpack Compose</span>
+                <span class="tech-pill">WorkManager</span>
+                <span class="tech-pill">Gradle</span>
+                <span class="tech-pill">GitHub Actions CI</span>
+              </div>
+              <div class="mt-4" style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+                <a href="https://github.com/kalpitt/saavdhan" target="_blank" rel="noopener" class="btn-primary">View on GitHub</a>
+                <div class="social-links">
+                  <a href="/saavdhan/privacy.html">Privacy Policy</a>
+                  <a href="/">← Back to Portfolio</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </main>
+
+  <footer class="sd-eco-footer">
+    <div class="container">
+      <p>More from the lab: <a href="/flagship/">Project Glass</a> &middot; <a href="/saavdhan/">Saavdhan</a> &middot; <a href="/vivotype/">VivoType</a> &middot; <a href="/learnai/">learnai.how</a> &middot; <a href="/systems/">The practice</a></p>
+      <p>Every claim on this site links to its proof.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    (function () {
+      var enBtn = document.getElementById('lang-en');
+      var hiBtn = document.getElementById('lang-hi');
+      if (!enBtn || !hiBtn) { return; }
+      var enEls = document.querySelectorAll('.i18n-en');
+      var hiEls = document.querySelectorAll('.i18n-hi');
+
+      function setLang(lang) {
+        var isHi = lang === 'hi';
+        enEls.forEach(function (el) { el.hidden = isHi; });
+        hiEls.forEach(function (el) { el.hidden = !isHi; });
+        enBtn.classList.toggle('active', !isHi);
+        hiBtn.classList.toggle('active', isHi);
+        enBtn.setAttribute('aria-pressed', String(!isHi));
+        hiBtn.setAttribute('aria-pressed', String(isHi));
+      }
+
+      enBtn.addEventListener('click', function () { setLang('en'); });
+      hiBtn.addEventListener('click', function () { setLang('hi'); });
+    })();
+  </script>
+</body>
+</html>

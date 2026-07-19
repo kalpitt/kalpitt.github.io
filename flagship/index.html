@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A local-first, glass-box AI tool that turns a listed Indian company's annual report into ranked, cited, severity-and-confidence-scored red flags. Deterministic math in code, LLM only for reasoning. Case study by Kalpit Tiwari." />
+  <title>Case Study: A Glass-Box AI Analyst for Financial Red Flags | Kalpit Tiwari</title>
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:title" content="A glass-box AI analyst for financial red flags" />
+  <meta property="og:description" content="Math in code, language in the model: making AI judgment defensible enough to sign. Case study by Kalpit Tiwari." />
+  <meta property="og:image" content="https://kalpit.me/social-preview.png" />
+  <meta property="og:url" content="https://kalpit.me/flagship/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://kalpit.me/flagship/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <script type="module" crossorigin src="/assets/main-nym3zWH5.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-Cm4zaJMw.css">
+</head>
+<body>
+
+  <!-- Dynamic mesh gradient background -->
+  <div class="mesh-bg">
+    <div class="mesh-blob blob-1"></div>
+    <div class="mesh-blob blob-2"></div>
+    <div class="mesh-blob blob-3"></div>
+  </div>
+
+  <div class="app-container case-study-container">
+    <header class="app-header">
+      <a href="/" class="logo" style="text-decoration: none; color: inherit;">Kalpit Tiwari</a>
+      <div class="status-indicator">
+        <span class="dot"></span> v1 Shipped
+      </div>
+    </header>
+
+    <main class="case-study-grid">
+
+      <!-- Hero -->
+      <div class="bento-card">
+        <div class="card-content">
+          <div class="meta-tag label-caps" style="display:inline-block; padding:0.25rem 0.75rem; background:rgba(13,147,115,0.1); color:var(--color-tertiary); border-radius:var(--radius-sm); margin-bottom:1rem;">Case Study · Flagship Project</div>
+          <h1 class="h1">A Glass-Box AI Analyst for Financial Red Flags</h1>
+          <h2 class="h3 gradient-text mt-2">It shows every step of its work — every claim cited, every number traceable to its source.</h2>
+          <p class="body-md text-secondary mt-4 prose-p">
+            This flagship project (final name under wraps until public launch) is a local-first tool that reads a listed
+            Indian company's annual report and produces a ranked, cited, severity-and-confidence-scored set of accounting
+            and solvency red flags. It proposes escalation; a human decides.
+          </p>
+          <div class="tech-pills mt-4">
+            <span class="tech-pill">v1 Shipped</span>
+            <span class="tech-pill">Native macOS App (Tauri)</span>
+            <span class="tech-pill">208/208 Tests Green</span>
+            <span class="tech-pill">Eval-Verified</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- The problem -->
+      <div class="bento-card">
+        <div class="card-content prose">
+          <h3 class="label-caps mb-4 text-secondary">The Problem — Trust Is the Bottleneck, Not the Answer</h3>
+          <p class="body-md">
+            In June 2026, SEBI passed an ex-parte order against Rajesh Exports, alleging roughly ₹15.15 lakh crore of
+            misrepresented revenue across FY21–25. The numbers had been public for years. The failure surfaced through a
+            shareholder complaint — not the audit. It is the canonical modern failure in regulated finance: the answer
+            existed, but nobody made the reasoning legible.
+          </p>
+          <p class="body-md">
+            Generic "chat with your PDF" tools make this worse — confident, black-box verdicts nobody can sign. In regulated
+            finance, an answer you can't defend to an auditor or a risk committee is worthless. This project is built on the
+            opposite premise: it sells <strong>defensible, auditable, legible judgment</strong>, not answers.
+          </p>
+        </div>
+      </div>
+
+      <!-- Architecture -->
+      <div class="bento-card">
+        <div class="card-content prose">
+          <h3 class="label-caps mb-4 text-secondary">The Architecture — Math in Code, Language in the Model</h3>
+          <p class="body-md">The single most important design decision in this tool is a hard split of responsibilities:</p>
+          <ul class="body-md">
+            <li><strong>Deterministic math lives in code.</strong> Altman Z-Score, Beneish M-Score, DSO, interest coverage and
+            every other metric are computed in a tested TypeScript compute layer, validated against Enron — the classic
+            worked example. Numbers are reproducible and can never be hallucinated, because the LLM never does arithmetic.</li>
+            <li><strong>The LLM (Gemini) only reads and reasons.</strong> It handles the qualitative sections — related-party
+            notes, contingent liabilities, the auditor's report, going-concern language — and articulates a reasoning chain
+            over the pre-computed metrics, including <em>plausible benign explanations</em>, because honesty is a feature.</li>
+            <li><strong>A grounding validator polices the boundary.</strong> Every number in the model's output must
+            round-trip to provenance — a computed value, a source figure, a page anchor. Anything unaccounted for is
+            rejected as ungrounded, never shown to the user.</li>
+          </ul>
+          <p class="body-md">
+            Judgment is bounded by a closed rubric of five flag families — solvency, earnings quality, related-party
+            exposure, audit signals, and leverage — and every flag honours a six-part evidence contract: claim, exact
+            citation, computed metric with formula, reasoning chain, severity with calibrated confidence, and a
+            recommended next step.
+          </p>
+        </div>
+      </div>
+
+      <!-- What v1 ships -->
+      <div class="bento-card">
+        <div class="card-content prose">
+          <h3 class="label-caps mb-4 text-secondary">What v1 Ships</h3>
+          <ul class="body-md">
+            <li><strong>A dual-pane workbench:</strong> click any conclusion and the exact source line highlights in the
+            original PDF — the "it actually read it" moment.</li>
+            <li><strong>Ranked flag cards</strong> with severity and calibrated confidence, plus an exportable evidence pack
+            an analyst could hand to a committee.</li>
+            <li><strong>A curated demo set</strong> running end-to-end: Rajesh Exports FY24 as the hero case, TCS FY24 as the
+            clean control.</li>
+            <li><strong>Bring-your-own-document:</strong> extraction proposes draft figures from a local PDF, a human reviews
+            and accepts each value in a source-linked grid, and only confirmed data flows into the unchanged compute layer —
+            with confidence capped by data tier.</li>
+            <li><strong>Packaged as a native macOS desktop app (Tauri)</strong> as well as a local web app. Local-first:
+            no accounts, no multi-tenant backend — model calls are the only network traffic.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Verification & limits -->
+      <div class="bento-card">
+        <div class="card-content prose">
+          <h3 class="label-caps mb-4 text-secondary">Verified, With Honest Limits</h3>
+          <ul class="body-md">
+            <li><strong>208/208 unit tests green</strong> across compute, reasoning, extraction, UI and eval integrity; the
+            strict TypeScript build compiles clean.</li>
+            <li><strong>An eval harness against a hand-labelled gold set:</strong> 100% metric accuracy and 100% combined
+            flag recall on the hero case, with citation round-trip checks.</li>
+            <li><strong>Triage, never a verdict.</strong> The tool proposes what an analyst should investigate — it never
+            declares fraud.</li>
+            <li><strong>Narrative flags are curated-only for now.</strong> Generating them for user-supplied documents is
+            deliberately research-gated rather than shipped half-trustworthy.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Why it matters + CTA -->
+      <div class="bento-card">
+        <div class="card-content prose">
+          <h3 class="label-caps mb-4 text-secondary">Why It Matters</h3>
+          <p class="body-md">
+            This project is a working, miniature proof of the thesis explainable-AI companies build at enterprise scale:
+            audit-ready, explainable AI for risk and compliance. It demonstrates the judgment that separates production AI
+            from demos — knowing what the model must <em>never</em> be trusted with, and engineering that boundary as a
+            validator rather than a hope.
+          </p>
+          <div class="tech-pills mt-4">
+            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Vite</span>
+            <span class="tech-pill">Tauri</span>
+            <span class="tech-pill">Gemini</span>
+            <span class="tech-pill">pdf.js</span>
+            <span class="tech-pill">Node</span>
+          </div>
+          <p class="body-md mt-4 text-secondary">
+            The code lives in a private repository ahead of public branding — happy to walk through it, the eval harness,
+            and the architecture decision records.
+          </p>
+          <div class="mt-4" style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+            <a href="mailto:tiwari.kalpit@gmail.com" class="btn-primary">Get in Touch</a>
+            <div class="social-links"><a href="/">← Back to Portfolio</a></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="eco-footer">
+      <p>More from the lab: <a href="/flagship/">Project Glass</a> &middot; <a href="/saavdhan/">Saavdhan</a> &middot; <a href="/vivotype/">VivoType</a> &middot; <a href="/learnai/">learnai.how</a> &middot; <a href="/systems/">The practice</a></p>
+      <p>Every claim on this site links to its proof.</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+</body>
+</html>
