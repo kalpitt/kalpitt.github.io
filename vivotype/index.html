@@ -102,6 +102,23 @@
         </div>
       </div>
 
+      <!-- What's new -->
+      <div class="bento-card">
+        <div class="card-content">
+          <h3 class="label-caps mb-4 text-secondary">New in v0.3.0</h3>
+          <p class="body-md font-semibold mb-4">It learns from the words you fix.</p>
+          <p class="body-md text-secondary">
+            Fix a word VivoType typed and a small card asks <strong>“Always write it this way?”</strong> —
+            press <strong>1</strong> to remember, <strong>2</strong> for not now. Also new: per-app cleanup
+            rules, a <strong>Your rules</strong> list you can edit, optional voice commands, fully offline
+            model loading, and a long list of accuracy, reliability and privacy fixes.
+          </p>
+          <div class="mt-4">
+            <a href="https://github.com/kalpitt/VivoType/blob/main/CHANGELOG.md" target="_blank" rel="noopener" class="link-secondary">Everything that changed &rarr;</a>
+          </div>
+        </div>
+      </div>
+
       <!-- How it works -->
       <div class="bento-card">
         <div class="card-content">
@@ -119,15 +136,17 @@
       <div class="bento-card">
         <div class="card-content">
           <h3 class="label-caps mb-4 text-secondary">Get It</h3>
-          <p class="body-md font-semibold mb-4">Beta — build from source in about 5 minutes.</p>
-          <div class="code-block">git clone https://github.com/kalpitt/VivoType
-cd VivoType &amp;&amp; ./clients/mac/build_app.sh</div>
+          <p class="body-md font-semibold mb-4">Beta — install in under a minute.</p>
+          <div class="code-block">curl -fsSL https://raw.githubusercontent.com/kalpitt/VivoType/main/install.sh | bash</div>
+          <p class="body-md text-secondary mt-4">Or with Homebrew:</p>
+          <div class="code-block">brew tap kalpitt/vivotype
+brew install --cask vivotype</div>
           <p class="body-md text-secondary mt-4">
-            Requires macOS with Python 3.11+ &middot; Apple Silicon recommended (MLX-accelerated). First launch
-            downloads the model (~466 MB) once, locally.
+            Requires an Apple Silicon Mac on macOS 13 or later. First launch sets everything up and
+            downloads the speech model (~466 MB) once, locally.
           </p>
           <div class="mt-4">
-            <a href="https://github.com/kalpitt/VivoType/releases" target="_blank" rel="noopener" class="link-secondary">Release notes &rarr;</a>
+            <a href="https://github.com/kalpitt/VivoType/releases/latest" target="_blank" rel="noopener" class="link-secondary">Release notes &rarr;</a>
           </div>
         </div>
       </div>
@@ -151,11 +170,11 @@ cd VivoType &amp;&amp; ./clients/mac/build_app.sh</div>
         <div class="card-content">
           <h3 class="label-caps mb-4 text-secondary">For Engineers</h3>
           <p class="body-md text-secondary">
-            169 green tests. The Hindi-English cleanup layer shipped as a ten-commit validated autonomy run —
+            462 green tests. The Hindi-English cleanup layer shipped as a ten-commit validated autonomy run —
             every commit individually tested and logged.
           </p>
           <div class="receipt-row mt-4">
-            <span class="receipt"><b>169/169 tests</b> <span class="arrow">&rarr;</span> <a href="https://github.com/kalpitt/VivoType" target="_blank" rel="noopener">CI</a></span>
+            <span class="receipt"><b>462/462 tests</b> <span class="arrow">&rarr;</span> <a href="https://github.com/kalpitt/VivoType" target="_blank" rel="noopener">CI</a></span>
             <span class="receipt"><b>10-commit autonomy window</b> — merge report</span>
           </div>
           <div class="mt-4" style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
