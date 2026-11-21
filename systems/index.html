@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How Kalpit Tiwari builds products with AI coding agents: written rules in every repo, automated checks, AI reviewers, project notes, decision records and human sign-off." />
+  <title>How I build with AI | Kalpit Tiwari</title>
+
+    <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalpit Tiwari" />
+  <meta property="og:title" content="How I build with AI" />
+  <meta property="og:description" content="Written rules, automated checks, AI reviewers and human sign-off: what I put around AI coding agents so I can trust what they ship." />
+  <meta property="og:image" content="https://kalpit.me/social-preview.png" />
+  <meta property="og:url" content="https://kalpit.me/systems/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://kalpit.me/systems/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script type="module" crossorigin src="/assets/systems-ph-iMPtm.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-k1SOxtMh.js">
+  <link rel="modulepreload" crossorigin href="/assets/main-BIIJhcUC.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-DooW7aIa.css">
+  <link rel="stylesheet" crossorigin href="/assets/design-BvO2nQp7.css">
+</head>
+<body>
+
+    <div class="mesh-bg">
+    <div class="mesh-blob blob-1"></div>
+    <div class="mesh-blob blob-2"></div>
+    <div class="mesh-blob blob-3"></div>
+  </div>
+
+  <div class="app-container case-study-container">
+    <header class="app-header">
+      <a href="/" class="logo" style="text-decoration: none; color: inherit;">Kalpit Tiwari</a>
+      <nav class="case-nav" aria-label="Main">
+        <a href="/#apps">Products</a>
+        <a href="/#work">Work</a>
+        <a href="/dispatch/">Dispatch</a>
+        <a href="/KalpitTiwari_Resume_AI_Transformation.pdf" target="_blank" rel="noopener">Resume</a>
+      </nav>
+    </header>
+
+    <main class="case-study-grid">
+
+            <div class="bento-card">
+        <div class="card-content">
+          <div class="meta-tag label-caps app-tag">How I work</div>
+          <h1 class="h1">How I build with AI</h1>
+          <p class="h3 gradient-text mt-2">I build and run my products mostly with AI coding agents. Most of the work is setting up the rules, checks and notes around them.</p>
+          <p class="body-md text-secondary mt-4 prose-p">
+            Alongside my day job I build five products on my own: a toolkit for the Indian job switch, an offline
+            anti-scam app for Android, a dictation app for Mac, a site of practical AI workflows, and Glass, a
+            financial-analysis tool that's still being built. AI agents write most of the code. This page is about
+            what I put around them so I can trust what they ship.
+          </p>
+          <div class="tech-pills mt-4">
+            <span class="tech-pill">4 live apps, 1 in progress</span>
+            <span class="tech-pill">1,000+ automated tests</span>
+            <span class="tech-pill">40+ decision records</span>
+            <span class="tech-pill">Claude Code · Cursor · Antigravity</span>
+          </div>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">1 · Every repo has written rules</h2>
+          <p class="body-md">
+            Each project has an operating manual (<code>AGENTS.md</code>) that every AI tool reads before it touches
+            code. It says what the product is for, the rules that can never break, how the code is laid out, and
+            what "done" means. Those rules are what make each product what it is: "the model never computes a
+            financial number", "this app never touches the internet", "audio never leaves the Mac". Because the
+            rules live in the repo, the work isn't stuck inside one chat or one tool.
+          </p>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">2 · Automated checks hold the important rules</h2>
+          <p class="body-md">
+            Agents forget instructions. Automated checks don't. So where a rule matters, a check enforces it:
+          </p>
+          <ul class="body-md">
+            <li><strong>Build checks</strong> (CI, the tests that run on every change) fail if the anti-scam app ever
+            gains the internet permission, if an on-screen line is missing its Hindi version, or if a page on
+            learnai.how drifts from the site template. This site has one too: it blocks publishing if a private file,
+            a broken link or a false product claim would go live.</li>
+            <li><strong>A grounding check</strong> in Glass rejects any model answer whose numbers don't trace back
+            to a cited source, so an unsupported claim never reaches the screen.</li>
+            <li><strong>Pre-action hooks</strong> warned an agent before it wrote a key into a normal file or
+            committed straight to the main branch. They only ever caught typos, so I deleted them from four repos
+            this autumn after six false alarms and no real catches.</li>
+          </ul>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">3 · AI reviewers check the work</h2>
+          <p class="body-md">
+            I use extra agents the way a good team uses senior reviewers. One checks every real change to Glass
+            against its core rules. One reviews anything in the dictation app that touches permissions or how text
+            gets typed. One turns news about scam-app campaigns into offline detection rules. One checks every claim
+            about AI tools in a learnai.how article against a maintained list of facts. Reviewers only review: they
+            report problems and leave the fix to the agent that wrote the change, and the final call to me.
+          </p>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">4 · Notes that outlive the chat</h2>
+          <ul class="body-md">
+            <li><strong>Project notes:</strong> each repo keeps a current-state file and a short note at the end of
+            every session, so the next agent, in any tool, starts where the last one stopped. Before work begins, the
+            agent checks those notes against the git history.</li>
+            <li><strong>Decision records:</strong> every hard-to-reverse choice is written down with its reasons.
+            Agents read them before changing a core rule, and propose a new one for anything costly to undo. Only I
+            accept them.</li>
+          </ul>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">5 · Agents run on their own, up to a limit</h2>
+          <p class="body-md">
+            Agents can work unsupervised on a branch under strict terms: one tested improvement per commit, no commit
+            if a test fails, a log line for every change, and a stop after ten commits to write a report for me. In
+            most repos only I can merge to main. In Switch Karle, an agent may merge its own change once every check
+            passes, then must watch the deploy and roll it back if the live check fails. One overnight run made twelve
+            tested improvements to the anti-scam app, each one logged and easy to review.
+          </p>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">6 · The right model for each job</h2>
+          <p class="body-md">
+            The most capable, most expensive models do the work where judgment matters: design, code that has to be
+            trusted, long unsupervised runs. Cheaper models do well-specified work, because a detailed written spec
+            plus tests that catch regressions makes the result predictable. I write those specs so the thinking is in
+            the document, and any model can follow it.
+          </p>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">7 · One week, every repo</h2>
+          <p class="body-md">
+            In July 2026 I had a week of access to a top model and used it across every repo at once. The results:
+          </p>
+          <ul class="body-md">
+            <li><strong>A plan before code:</strong> for Glass, it read a real 140-page annual report and wrote a
+            700-line research plan, a decision record and a 14-task breakdown with a suggested model for each task. No
+            code: the plan waited for my approval, and cheaper models build it afterwards.</li>
+            <li><strong>A full unsupervised run:</strong> ten commits improved the dictation app's text clean-up, each
+            tested and logged, then merged as one batch after I reviewed it.</li>
+            <li><strong>Real detection, released:</strong> the anti-scam app gained three offline detection rules for
+            2026 scam-app campaigns, tested on an emulator and released as a signed v0.6.0.</li>
+            <li><strong>The process itself:</strong> the rules, notes and model-routing policy were copied to every
+            repo, and the best sessions became reusable templates.</li>
+          </ul>
+          <p class="body-md">
+            The week ended with plans, decision records, releases and a process that cheaper models can keep using,
+            rather than a pile of chat transcripts.
+          </p>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">Why this matters at work</h2>
+          <p class="body-md">
+            Companies adopting AI need the same things: rules enforced by checks rather than policy documents, a
+            written record of decisions, a split between the AI that does the work and the AI or person that checks
+            it, and human sign-off where the risk is. I run this every day on my own products, so I know what it takes
+            to set it up for a team.
+          </p>
+          <div class="mt-4" style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+            <a href="mailto:tiwari.kalpit@gmail.com" class="btn-primary">Email me</a>
+            <div class="social-links">
+              <a href="/flagship/">Glass case study</a>
+              <a href="/saavdhan/">Saavdhan</a>
+              <a href="/">← Back to Kalpit Tiwari</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="eco-footer">
+      <p>More from the lab: <a href="/flagship/">Glass</a> &middot; <a href="/saavdhan/">Saavdhan</a> &middot; <a href="/vivotype/">VivoType</a> &middot; <a href="/learnai/">learnai.how</a> &middot; <a href="https://switchkarle.fyi/" target="_blank" rel="noopener">Switch Karle</a> &middot; <a href="/systems/">The practice</a></p>
+      <p>Where the code is public, claims link to their proof. Client figures are anonymised by policy.</p>
+    </footer>
+  </div>
+
+  </body>
+</html>

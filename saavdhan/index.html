@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Saavdhan (सावधान): a free, offline Android app that finds scam and spyware apps on a parent&#39;s phone, explains the risk in Hindi or English, and guides the fix." />
+  <title>Saavdhan: free offline anti-scam app | Kalpit Tiwari</title>
+
+    <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalpit Tiwari" />
+  <meta property="og:title" content="Saavdhan: find the scam app on your parent's phone, offline" />
+  <meta property="og:description" content="A free Android app for Indian families: finds scam and spyware apps, explains the risk in Hindi or English, and walks you to the fix. It never goes online." />
+  <meta property="og:image" content="https://kalpit.me/social-preview.png" />
+  <meta property="og:url" content="https://kalpit.me/saavdhan/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://kalpit.me/saavdhan/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
+
+  
+  <style>
+    /* Saavdhan-only pieces. Colours come from the theme-saavdhan class (src/style.css). */
+    .lang-toggle { display: inline-flex; border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; background: #fff; margin-bottom: 1rem; }
+    .lang-btn { font: inherit; font-size: 0.85rem; font-weight: 600; background: transparent; color: var(--color-secondary); border: 0; padding: 0 16px; min-height: 44px; cursor: pointer; }
+    .lang-btn + .lang-btn { border-left: 1px solid var(--color-border); }
+    .lang-btn.active { background: var(--color-accent-saavdhan-ink); color: #fff; }
+    .hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+    .lure-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .lure-card { background: rgba(255,255,255,0.8); border: 1px solid var(--color-border); border-radius: var(--radius-md, 12px); padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; }
+    .lure-card svg { color: var(--color-accent-saavdhan-ink); }
+    .lure-card code { font-size: 0.8rem; color: var(--color-secondary); word-break: break-word; }
+    .sd-phones { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
+    .sd-phone { width: 180px; max-width: 100%; margin: 0; text-align: center; }
+    .sd-phone-frame { border: 2px solid var(--color-primary); border-radius: 20px; overflow: hidden; background: #fff; aspect-ratio: 1080 / 2400; }
+    .sd-phone-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sd-phone-caption { display: block; font-weight: 700; margin-top: 10px; }
+    .sd-phone-sub { display: block; font-size: 0.85rem; color: var(--color-secondary); }
+    @media (max-width: 768px) { .lure-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+  <script type="module" crossorigin src="/assets/saavdhan-ph-iMPtm.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-k1SOxtMh.js">
+  <link rel="modulepreload" crossorigin href="/assets/main-BIIJhcUC.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-DooW7aIa.css">
+  <link rel="stylesheet" crossorigin href="/assets/design-BvO2nQp7.css">
+</head>
+<body class="theme-saavdhan">
+
+  <div class="mesh-bg">
+    <div class="mesh-blob blob-1"></div>
+    <div class="mesh-blob blob-2"></div>
+    <div class="mesh-blob blob-3"></div>
+  </div>
+
+  <div class="app-container case-study-container">
+    <header class="app-header">
+      <a href="/" class="logo" style="text-decoration: none; color: inherit;">Kalpit Tiwari</a>
+      <nav class="case-nav" aria-label="Main">
+        <a href="/#apps">Products</a>
+        <a href="/#work">Work</a>
+        <a href="/dispatch/">Dispatch</a>
+        <a href="/KalpitTiwari_Resume_AI_Transformation.pdf" target="_blank" rel="noopener">Resume</a>
+      </nav>
+    </header>
+
+    <main class="case-study-grid">
+
+            <div class="bento-card">
+        <div class="card-content">
+          <div class="hero-top">
+            <div class="meta-tag label-caps app-tag">Android · Free · v0.7.0</div>
+            <div class="lang-toggle" role="group" aria-label="Language">
+              <button type="button" class="lang-btn active" id="lang-en" aria-pressed="true">English</button>
+              <button type="button" class="lang-btn" id="lang-hi" aria-pressed="false">हिन्दी</button>
+            </div>
+          </div>
+          <h1 class="h1"><span class="i18n-en">Is a scam app on your parent's phone?</span><span class="i18n-hi" lang="hi" hidden>क्या आपके माता-पिता के फ़ोन में scam app है?</span></h1>
+          <p class="body-md text-secondary mt-4 prose-p"><span class="i18n-en">Saavdhan (सावधान, &ldquo;be alert&rdquo;) finds dangerous apps, explains the risk in plain language, and takes you to the exact screen to fix it, one tap at a time. Fully offline, in Hindi and English, and free.</span><span class="i18n-hi" lang="hi" hidden>सावधान ख़तरनाक apps ढूँढता है, ख़तरा आसान भाषा में समझाता है, और सही settings screen तक ले जाता है। पूरी तरह offline, हिन्दी और English में, और मुफ़्त।</span></p>
+          <div class="mt-4" style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+            <a class="btn-primary" href="https://github.com/kalpitt/saavdhan/releases/latest/download/saavdhan.apk"><span class="i18n-en">Download for Android (free)</span><span class="i18n-hi" lang="hi" hidden>Android के लिए डाउनलोड करें (मुफ़्त)</span></a>
+            <a class="link-secondary" href="https://github.com/kalpitt/saavdhan" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+          <div class="receipt-row mt-4">
+            <span class="receipt"><span class="i18n-en"><b>No internet permission</b>, so Android itself blocks it from going online</span><span class="i18n-hi" lang="hi" hidden><b>कोई internet permission नहीं</b>, Android ख़ुद इसे online जाने से रोकता है</span></span>
+            <span class="receipt"><b>Checked on every build</b> <span class="arrow">&rarr;</span> <a href="https://github.com/kalpitt/saavdhan/actions" target="_blank" rel="noopener">test runs</a></span>
+          </div>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content">
+          <h2 class="label-caps mb-4 text-secondary">It arrives on WhatsApp, looking like this</h2>
+          <div class="lure-grid">
+            <div class="lure-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+              <code>Shaadi-invitation.apk</code>
+            </div>
+            <div class="lure-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5-9 5-9-5z"></path><path d="M3 8v9l9 5 9-5V8"></path><path d="M12 13v9"></path></svg>
+              <code>Courier-delivery-update.apk</code>
+            </div>
+            <div class="lure-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h6"></path></svg>
+              <code>KYC-verification.apk</code>
+            </div>
+            <div class="lure-card">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"></path></svg>
+              <code>Electricity-bill.apk</code>
+            </div>
+          </div>
+          <p class="body-md text-secondary mt-4">One tap installs banking malware that reads OTPs and empties accounts. It targets the family members least able to spot it.</p>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content">
+          <h2 class="label-caps mb-4 text-secondary">What Saavdhan does</h2>
+          <div class="sd-phones">
+            <figure class="sd-phone">
+              <div class="sd-phone-frame"><img src="/saavdhan/screenshots/detect.webp" width="540" height="1200" alt="Saavdhan scan results screen, risk-tinted cards with the most dangerous apps shown first" loading="lazy" /></div>
+              <figcaption><span class="sd-phone-caption">Detect</span><span class="sd-phone-sub">One-tap scan, riskiest apps first</span></figcaption>
+            </figure>
+            <figure class="sd-phone">
+              <div class="sd-phone-frame"><img src="/saavdhan/screenshots/explain.webp" width="540" height="1200" alt="Saavdhan app detail screen explaining in plain language why an app looks risky" loading="lazy" /></div>
+              <figcaption><span class="sd-phone-caption">Explain</span><span class="sd-phone-sub">Plain-language reasons, not a bare score</span></figcaption>
+            </figure>
+            <figure class="sd-phone">
+              <div class="sd-phone-frame"><img src="/saavdhan/screenshots/guide.webp" width="540" height="1200" alt="Saavdhan guided cleanup checklist walking through removing a dangerous app's powers" loading="lazy" /></div>
+              <figcaption><span class="sd-phone-caption">Guide</span><span class="sd-phone-sub">Step-by-step clean-up, one tap at a time</span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">The promises that never change</h2>
+          <ul class="body-md text-secondary">
+            <li><strong><span class="i18n-en">Fully offline.</span><span class="i18n-hi" lang="hi" hidden>पूरी तरह offline।</span></strong> The app has no internet permission, so Android itself stops it from going online. The build fails if that permission ever sneaks in.</li>
+            <li><strong><span class="i18n-en">It guides you. It never pretends.</span><span class="i18n-hi" lang="hi" hidden>रास्ता दिखाता है, दिखावा नहीं करता।</span></strong> Android only lets you, the owner, switch off another app's powers. Saavdhan opens the right screen and coaches the final tap, with fallbacks for Samsung, Xiaomi, Oppo, Vivo and Huawei phones. It never fakes an automatic fix.</li>
+            <li><strong><span class="i18n-en">Every warning explains itself.</span><span class="i18n-hi" lang="hi" hidden>हर चेतावनी अपना कारण बताती है।</span></strong> Each result lists its reasons in plain words, in Hindi or English, not just a score.</li>
+          </ul>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">What v0.7.0 does</h2>
+          <ul class="body-md text-secondary">
+            <li><strong>One-tap scan</strong> of every installed app, with a risk level and reasons. You choose Hindi or English inside the app, whatever the phone's language.</li>
+            <li><strong>A guided clean-up checklist</strong> that removes a dangerous app's powers before uninstalling it, then confirms the app is really gone.</li>
+            <li><strong>A watchdog</strong> that warns you when a newly installed app looks dangerous, the moment that matters during a live scam.</li>
+            <li><strong>Messenger-install detection</strong> that flags apps installed from WhatsApp and similar apps, the signature of this scam.</li>
+            <li><strong>&ldquo;Send result to family&rdquo;:</strong> a summary you can share without the internet, so a son or daughter in another city can see what the scan found.</li>
+          </ul>
+          <p class="body-md text-secondary mt-4">A signed release is on GitHub. The Play Store listing is prepared but not yet filed.</p>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">What it doesn't do</h2>
+          <ul class="body-md text-secondary">
+            <li><strong>No malware database.</strong> It judges apps by how they behave and what they ask for, so it can raise false alarms and can miss brand-new threats.</li>
+            <li><strong>No online updates.</strong> Detection rules ship inside the app and only change with an app update. That's the price of never going online.</li>
+            <li><strong>Some switches only you can flip.</strong> Android keeps them for the phone's owner, and Saavdhan says so.</li>
+            <li><strong>Money already stolen?</strong> First call 1930, India's cyber-crime helpline, and your bank.</li>
+          </ul>
+        </div>
+      </div>
+
+            <div class="bento-card" id="case-study">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">For engineers</h2>
+          <p class="body-md text-secondary">
+            The risk engine is plain Kotlin with no Android code, so it gives the same answer every time and is easy to test.
+            It scores clear signals: dangerous combinations of permissions, apps installed from a messenger instead of the
+            Play Store, names that imitate trusted brands, and missing trusted signatures. Every verdict carries its ranked
+            reasons, which is what lets the app explain itself. The build fails if the internet permission appears, or if any
+            on-screen line is missing its Hindi version.
+          </p>
+          <div class="receipt-row mt-4">
+            <span class="receipt"><b>136 tests</b> <span class="arrow">&rarr;</span> <a href="https://github.com/kalpitt/saavdhan/actions" target="_blank" rel="noopener">test runs</a></span>
+            <span class="receipt"><b>Signed v0.7.0</b> <span class="arrow">&rarr;</span> <a href="https://github.com/kalpitt/saavdhan/releases/tag/v0.7.0" target="_blank" rel="noopener">GitHub release</a></span>
+          </div>
+          <div class="tech-pills mt-4">
+            <span class="tech-pill">Kotlin</span>
+            <span class="tech-pill">Jetpack Compose</span>
+            <span class="tech-pill">WorkManager</span>
+            <span class="tech-pill">GitHub Actions CI</span>
+            <span class="tech-pill">MIT licensed</span>
+          </div>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content">
+          <h2 class="label-caps mb-4 text-secondary">Why I built it</h2>
+          <p class="body-md text-secondary">
+            Scam APKs reached my own family's WhatsApp. Security apps assume a technical user, and most want internet access
+            and personal data, which is exactly why families hesitate to install them. Saavdhan is what I wanted my family to
+            have: promises checked by the build, warnings in their language, and honesty about what it can't do.
+          </p>
+          <div class="mt-4" style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+            <a href="https://github.com/kalpitt/saavdhan" target="_blank" rel="noopener" class="btn-primary">View on GitHub</a>
+            <div class="social-links">
+              <a href="/saavdhan/privacy.html">Privacy policy</a>
+              <a href="/">← Back to Kalpit Tiwari</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="eco-footer">
+      <p>More from the lab: <a href="/flagship/">Glass</a> &middot; <a href="/saavdhan/">Saavdhan</a> &middot; <a href="/vivotype/">VivoType</a> &middot; <a href="/learnai/">learnai.how</a> &middot; <a href="https://switchkarle.fyi/" target="_blank" rel="noopener">Switch Karle</a> &middot; <a href="/systems/">The practice</a></p>
+      <p>Where the code is public, claims link to their proof. Client figures are anonymised by policy.</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var enBtn = document.getElementById('lang-en');
+      var hiBtn = document.getElementById('lang-hi');
+      if (!enBtn || !hiBtn) { return; }
+      var enEls = document.querySelectorAll('.i18n-en');
+      var hiEls = document.querySelectorAll('.i18n-hi');
+
+      function setLang(lang) {
+        var isHi = lang === 'hi';
+        enEls.forEach(function (el) { el.hidden = isHi; });
+        hiEls.forEach(function (el) { el.hidden = !isHi; });
+        enBtn.classList.toggle('active', !isHi);
+        hiBtn.classList.toggle('active', isHi);
+        enBtn.setAttribute('aria-pressed', String(!isHi));
+        hiBtn.setAttribute('aria-pressed', String(isHi));
+      }
+
+      enBtn.addEventListener('click', function () { setLang('en'); });
+      hiBtn.addEventListener('click', function () { setLang('hi'); });
+    })();
+  </script>
+</body>
+</html>
