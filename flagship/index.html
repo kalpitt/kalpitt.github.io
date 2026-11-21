@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Glass, a tool Kalpit Tiwari is building: it reads an Indian company&#39;s annual report and flags accounting risks, with every number traced to its page." />
+  <title>Glass: an AI analyst that shows its sources | Kalpit Tiwari</title>
+
+    <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalpit Tiwari" />
+  <meta property="og:title" content="Glass: an AI analyst that shows its sources" />
+  <meta property="og:description" content="Maths in code, words from the model: a red-flag analyst whose every number traces back to the page it came from." />
+  <meta property="og:image" content="https://kalpit.me/social-preview.png" />
+  <meta property="og:url" content="https://kalpit.me/flagship/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://kalpit.me/flagship/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script type="module" crossorigin src="/assets/flagship-ph-iMPtm.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-k1SOxtMh.js">
+  <link rel="modulepreload" crossorigin href="/assets/main-BIIJhcUC.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-DooW7aIa.css">
+  <link rel="stylesheet" crossorigin href="/assets/design-BvO2nQp7.css">
+</head>
+<body>
+
+    <div class="mesh-bg">
+    <div class="mesh-blob blob-1"></div>
+    <div class="mesh-blob blob-2"></div>
+    <div class="mesh-blob blob-3"></div>
+  </div>
+
+  <div class="app-container case-study-container">
+    <header class="app-header">
+      <a href="/" class="logo" style="text-decoration: none; color: inherit;">Kalpit Tiwari</a>
+      <nav class="case-nav" aria-label="Main">
+        <a href="/#apps">Products</a>
+        <a href="/#work">Work</a>
+        <a href="/dispatch/">Dispatch</a>
+        <a href="/KalpitTiwari_Resume_AI_Transformation.pdf" target="_blank" rel="noopener">Resume</a>
+      </nav>
+    </header>
+
+    <main class="case-study-grid">
+
+            <div class="bento-card">
+        <div class="card-content">
+          <div class="meta-tag label-caps app-tag">Case study · Being built</div>
+          <h1 class="h1">Glass: an AI analyst that shows its sources</h1>
+          <p class="h3 gradient-text mt-2">Every claim has a citation, and every number traces back to the page it came from.</p>
+          <p class="body-md text-secondary mt-4 prose-p">
+            Glass reads a listed Indian company's annual report and lists the accounting and solvency red flags an
+            analyst should look into, ranked, with a severity, a confidence level and the exact source for each. It
+            suggests what to escalate. A person decides.
+          </p>
+          <div class="tech-pills mt-4">
+            <span class="tech-pill">Being built</span>
+            <span class="tech-pill">Mac app (Tauri)</span>
+            <span class="tech-pill">534 automated tests</span>
+            <span class="tech-pill">Scored against hand-checked answers</span>
+          </div>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">The problem: nobody can check the reasoning</h2>
+          <p class="body-md">
+            In June 2026, SEBI passed an ex-parte order against Rajesh Exports, alleging roughly ₹15.15 lakh crore of
+            misrepresented revenue across FY21–25. The numbers had been public for years. It came to light through a
+            shareholder complaint, not the audit. The information was there. Nobody had laid out the reasoning in a
+            way others could check.
+          </p>
+          <p class="body-md">
+            "Chat with your PDF" tools make this worse. They give confident answers that nobody can defend to an
+            auditor or a risk committee, and in finance an answer you can't defend is no use. Glass is built so every
+            answer can be checked.
+          </p>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">The design: maths in code, words from the model</h2>
+          <p class="body-md">The most important decision is a strict split of jobs:</p>
+          <ul class="body-md">
+            <li><strong>Code does all the maths.</strong> Altman Z-Score, Beneish M-Score, days sales outstanding,
+            interest coverage and every other ratio come from tested TypeScript, checked against Enron's known
+            numbers. The model never does arithmetic, so it can't make a number up.</li>
+            <li><strong>The model (Gemini) only reads and explains.</strong> It reads the written sections, such as
+            related-party notes, contingent liabilities and the auditor's report, and explains the computed numbers,
+            including innocent explanations an analyst should rule out.</li>
+            <li><strong>A grounding check guards the line.</strong> Every number in the model's answer must match a
+            computed value or a figure on a cited page. Anything that doesn't is thrown away and never shown.</li>
+          </ul>
+          <p class="body-md">
+            Flags come from a fixed list of five families: solvency, earnings quality, related-party exposure, audit
+            signals and leverage. Each flag carries six things: the claim, the exact citation, the computed metric
+            and its formula, the reasoning, a severity with a confidence level, and a suggested next step.
+          </p>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">What it does today</h2>
+          <ul class="body-md">
+            <li><strong>Side-by-side view:</strong> click any conclusion and the source line lights up in the original
+            PDF.</li>
+            <li><strong>Ranked flag cards</strong> with severity and confidence, plus an evidence pack an analyst can
+            export and hand to a committee.</li>
+            <li><strong>Two worked examples</strong> run end to end: Rajesh Exports FY24 as the main case, and TCS FY24
+            as the clean comparison.</li>
+            <li><strong>Your own report:</strong> Glass pulls draft figures from a PDF on your computer, you confirm each
+            one against its source, and only confirmed figures are used. On a new report it runs the statement figures
+            and six ratio checks; the full flag set exists only for the two worked examples so far.</li>
+            <li><strong>Runs on your computer</strong> as a Mac app or in the browser. No accounts and no server of its
+            own; the only network traffic is the calls to the model. Not released publicly yet.</li>
+          </ul>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">How it's checked, and its limits</h2>
+          <ul class="body-md">
+            <li><strong>534 automated tests</strong> (November 2026) cover the maths, the model's answers, figure
+            extraction, the screens and the scoring itself.</li>
+            <li><strong>Five sets of hand-checked answers</strong> are used to score the maths, how many real flags it
+            finds, how many false ones it raises, and whether citations match their source.</li>
+            <li><strong>Not general yet.</strong> It runs fully on two prepared reports. The work now is making it
+            read any annual report and scoring that the same way.</li>
+            <li><strong>It suggests, it never judges.</strong> Glass says what to investigate. It never says fraud.</li>
+          </ul>
+        </div>
+      </div>
+
+            <div class="bento-card">
+        <div class="card-content prose">
+          <h2 class="label-caps mb-4 text-secondary">Why I'm building it</h2>
+          <p class="body-md">
+            Banks and auditors want AI they can audit. Glass is a small, working version of that: it knows what the
+            model must never be trusted with, and a check enforces it.
+          </p>
+          <div class="tech-pills mt-4">
+            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Vite</span>
+            <span class="tech-pill">Tauri</span>
+            <span class="tech-pill">Gemini</span>
+            <span class="tech-pill">pdf.js</span>
+            <span class="tech-pill">Node</span>
+          </div>
+          <p class="body-md mt-4 text-secondary">
+            The code is private until release. I'm happy to walk you through it, the scoring and the decision records.
+          </p>
+          <div class="mt-4" style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+            <a href="mailto:tiwari.kalpit@gmail.com" class="btn-primary">Email me</a>
+            <div class="social-links"><a href="/">← Back to Kalpit Tiwari</a></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="eco-footer">
+      <p>More from the lab: <a href="/flagship/">Glass</a> &middot; <a href="/saavdhan/">Saavdhan</a> &middot; <a href="/vivotype/">VivoType</a> &middot; <a href="/learnai/">learnai.how</a> &middot; <a href="https://switchkarle.fyi/" target="_blank" rel="noopener">Switch Karle</a> &middot; <a href="/systems/">The practice</a></p>
+      <p>Where the code is public, claims link to their proof. Client figures are anonymised by policy.</p>
+    </footer>
+  </div>
+
+  </body>
+</html>

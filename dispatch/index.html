@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Kalpit Dispatch: short notes on the apps Kalpit Tiwari builds, what broke, and what changed. Saavdhan, Glass, Switch Karle and more." />
+  <title>The Kalpit Dispatch | Kalpit Tiwari</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalpit Tiwari" />
+  <meta property="og:title" content="The Kalpit Dispatch" />
+  <meta property="og:description" content="Short notes on the apps I build, what broke, and what changed." />
+  <meta property="og:image" content="https://kalpit.me/social-preview.png" />
+  <meta property="og:url" content="https://kalpit.me/dispatch/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://kalpit.me/dispatch/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preload" href="/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+  <link rel="stylesheet" crossorigin href="/assets/dispatch-D_jz6hCl.css">
+  <link rel="stylesheet" crossorigin href="/assets/design-BvO2nQp7.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <a class="topbar-home" href="/"><span aria-hidden="true">← </span>kalpit.me</a>
+    <nav class="topbar-nav" aria-label="Main">
+      <a href="/#apps">Apps</a>
+      <a href="/dispatch/" aria-current="page">Dispatch</a>
+      <a href="/KalpitTiwari_Resume_AI_Transformation.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </header>
+
+  <header class="masthead">
+    <div class="ears">
+      <p>Bengaluru</p>
+      <p>Issue No. 1</p>
+    </div>
+    <h1 class="masthead-title">The Kalpit Dispatch</h1>
+    <p class="masthead-line">
+      <span>Thursday, 19 November 2026</span>
+      <span>Product notes: what I build, what broke, and what changed</span>
+    </p>
+    <p class="masthead-note">I build these apps with AI coding agents. I decide what ships, and I try each change myself before it goes live.</p>
+  </header>
+
+  <main id="main">
+    <nav class="contents" aria-labelledby="contents-title">
+      <h2 id="contents-title" class="contents-title">In this issue</h2>
+      <ol>
+        <li><a href="#uninstall-button">The Uninstall button that did nothing</a></li>
+        <li><a href="#truth-pass">I took claims off my own website</a></li>
+        <li><a href="#glass-maths">In Glass, the AI isn't allowed to do maths</a></li>
+        <li><a href="#gratuity-law">The law changed under my gratuity calculator</a></li>
+        <li><a href="#deal-helper">A deals page that shows price ranges on purpose</a></li>
+        <li><a href="#cant-switch-off">Why Saavdhan can't turn off a scam app for you</a></li>
+      </ol>
+    </nav>
+
+    <article class="story story--lead" id="uninstall-button" aria-labelledby="uninstall-button-title">
+      <p class="kicker"><a href="/saavdhan/">Saavdhan</a></p>
+      <h2 id="uninstall-button-title">The Uninstall button that did nothing</h2>
+      <p class="standfirst">Saavdhan's most important button did nothing on any phone running Android 9 or newer. I found out on my own OnePlus.</p>
+      <p class="dateline">23 September 2026</p>
+      <div class="story-body">
+        <p>Saavdhan finds scam apps on a phone and walks you to the screen that removes them. In September I tried it on my OnePlus, which runs Android 15. I got to step 2 of the cleanup, "Uninstall this app", and tapped it. Nothing happened. No error, no dialog.</p>
+        <p>The cause was one missing line in the app's manifest, the file where an Android app lists what it may ask for. Since Android 9, a request to uninstall another app is quietly dropped unless the app asking declares <code>REQUEST_DELETE_PACKAGES</code>. Android doesn't raise an error, so Saavdhan's fallback never ran either. Every phone on Android 9 or newer had the bug. Version 0.6.0 shipped with it.</p>
+        <p>The fix went out in v0.7.0 on 26 September:</p>
+        <ul>
+          <li>Saavdhan now declares the permission. Android shows no extra prompt for it, and you still confirm every uninstall yourself.</li>
+          <li>The uninstall step has a second button that opens the app's settings page, for built-in apps that can't be removed.</li>
+          <li>A check on every build now fails if that permission goes missing from the app.</li>
+        </ul>
+        <p class="pull">None of Saavdhan's automated tests caught it.</p>
+      </div>
+    </article>
+
+    <div class="columns">
+      <article class="story" id="truth-pass" aria-labelledby="truth-pass-title">
+        <p class="kicker"><a href="/">kalpit.me</a></p>
+        <h2 id="truth-pass-title">I took claims off my own website</h2>
+        <p class="dateline">17 November 2026</p>
+        <div class="story-body">
+          <p class="standfirst">On 17 November I went through this site line by line and checked each claim against the code. Some didn't hold up.</p>
+          <p>Version numbers and test counts on the Glass and VivoType pages were out of date. They now match the repos.</p>
+          <p>I also added two things the site didn't mention: Switch Karle and my festive deals page.</p>
+        </div>
+      </article>
+
+      <article class="story" id="glass-maths" aria-labelledby="glass-maths-title">
+        <p class="kicker"><a href="/flagship/">Glass</a></p>
+        <h2 id="glass-maths-title">In Glass, the AI isn't allowed to do maths</h2>
+        <p class="dateline">Being built</p>
+        <div class="story-body">
+          <p class="standfirst">Glass reads an Indian company's annual report and lists the accounting red flags worth a closer look. The language model inside it never calculates a number.</p>
+          <p>Every ratio in Glass is plain code with tests. The model gets the finished numbers and only explains them in words. If a number in the output came from the model, that's a bug.</p>
+          <p>Every figure also points back to where it came from: the statement, the line item, the year and the page. A test checks that each cited figure matches the report. And Glass only ever says "look into this". It never says fraud.</p>
+          <p>Where it stands today:</p>
+          <ul>
+            <li>Glass isn't public yet.</li>
+            <li>It works on two annual reports I picked and checked by hand: Rajesh Exports FY24 and TCS FY24. The flags shown for them were checked by hand too.</li>
+            <li>On a new report, it can pull out the financial statements and run six ratio checks. Reading any annual report from start to finish is the part I'm building next.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="story" id="gratuity-law" aria-labelledby="gratuity-law-title">
+        <p class="kicker"><a href="https://switchkarle.fyi/" target="_blank" rel="noopener">Switch Karle</a></p>
+        <h2 id="gratuity-law-title">The law changed under my gratuity calculator</h2>
+        <p class="dateline">27 September 2026</p>
+        <div class="story-body">
+          <p class="standfirst">Gratuity used to come from the Payment of Gratuity Act, 1972. That Act was repealed on 21 November 2025, so Switch Karle's calculator had to move to the new law.</p>
+          <p>Switch Karle helps with an Indian job switch: in-hand pay from a CTC, notice buyout, gratuity, the resignation letter. It runs in your browser.</p>
+          <p>Gratuity now sits in the Code on Social Security, 2020. On 27 September I re-checked the calculator against the Code and its notification, and moved the eligibility rules over.</p>
+          <p>This is why every legal number in the calculator's source code carries a label:</p>
+          <ul>
+            <li><strong>Verified</strong> means the primary source (the Act, notification or circular) was read, and the date and section are written next to the number.</li>
+            <li><strong>Candidate</strong> means I haven't confirmed it against the primary source yet. Where it changes a result, the tool tells you.</li>
+          </ul>
+          <p>The ₹20 lakh gratuity cap is still a candidate. The Code says the cap is "such amount as may be notified", and I haven't found a notification under the Code yet.</p>
+          <p>Every source is listed at <a href="https://switchkarle.fyi/sources/" target="_blank" rel="noopener">switchkarle.fyi/sources</a>.</p>
+        </div>
+      </article>
+
+      <article class="story" id="deal-helper" aria-labelledby="deal-helper-title">
+        <p class="kicker"><a href="/BBD/">Kalpit's Deal Helper</a></p>
+        <h2 id="deal-helper-title">A deals page that shows price ranges on purpose</h2>
+        <p class="dateline">8 October to 8 November 2026</p>
+        <div class="story-body">
+          <p class="standfirst">During the Amazon and Flipkart festive sales I ran kalpit.me/BBD: my picks for friends and family, sorted by budget, plus a box where you could ask follow-up questions.</p>
+          <ul>
+            <li><strong>Price ranges on some Amazon items.</strong> Amazon's affiliate rules don't allow hand-typed prices next to affiliate links. So I used Amazon affiliate links only on items that earn about ₹250 or more per sale, and those items showed a price range. Every other item showed its exact price.</li>
+            <li><strong>An ask box that costs ₹0.</strong> It runs on Cloudflare Workers AI, needs no API key, and Cloudflare doesn't train on the questions. The free limit is roughly 80 to 120 questions a day. When it runs out, the box says so and asks you to come back tomorrow.</li>
+            <li><strong>It only recommends from my list.</strong> It keeps to your budget and won't suggest a product that isn't on the page.</li>
+            <li><strong>Prices checked every 3 hours.</strong> A price changed only when the check could confirm the new one.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="story" id="cant-switch-off" aria-labelledby="cant-switch-off-title">
+        <p class="kicker"><a href="/saavdhan/">Saavdhan</a></p>
+        <h2 id="cant-switch-off-title">Why Saavdhan can't turn off a scam app for you</h2>
+        <p class="dateline">The rule behind the app</p>
+        <div class="story-body">
+          <p class="standfirst">People ask why Saavdhan doesn't just switch off the bad app. Android won't let it, and that's on purpose.</p>
+          <p>One Android app can't take away another app's Accessibility access or its Device Admin rights, and it can't switch airplane mode on. Google built that wall so apps can't fight each other. If Saavdhan could do it, so could the scam app.</p>
+          <p>So Saavdhan does the part it can do well. It tells you which app is dangerous and why, in Hindi or English. Then one tap opens the exact settings screen where you switch it off.</p>
+          <p>Two more things it does:</p>
+          <ul>
+            <li>Scammers often send a fake wedding invite as an app file on WhatsApp. If someone installs one, Saavdhan flags it as critical right away, before they tap "Allow" on anything.</li>
+            <li>Saavdhan has no internet permission at all. The manifest removes it even if a library tries to add it, and the build fails if it ever shows up. Its detection rules ship inside the app and change only when the app updates.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="colophon">
+    <p>Written by Kalpit Tiwari in Bengaluru. Spotted something wrong? <a href="mailto:tiwari.kalpit@gmail.com">Email me</a> and I'll correct it here.</p>
+    <p class="colophon-links">
+      <a href="/">kalpit.me</a> ·
+      <a href="https://linkedin.com/in/kalpitt" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://github.com/kalpitt" target="_blank" rel="noopener">GitHub</a>
+    </p>
+  </footer>
+</body>
+</html>
